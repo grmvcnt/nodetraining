@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>Node Training</h1>
+        <p>List of users :</p>
+        <ul class="list-group">
+            <% for(var i=0; i<users.length; i++) {%>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div><%= users[i].name %></div>
+                    <form method="POST" action="/users/<%= users[i].name %>">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger" type="submit" id="btn-delete" >delete</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+        <form class="mt-2" method="post" action="/users">
+            <div class="form-group">
+                <label for="name">Name :</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter your name">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
+
